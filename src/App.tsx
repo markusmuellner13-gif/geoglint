@@ -57,6 +57,15 @@ const clueValue = (c: CountryFact, i: number): string => {
   }
 }
 
+// Convert a flag emoji (🇯🇵) to its ISO 3166-1 alpha-2 code ("jp")
+const flagToCode = (flag: string): string => {
+  const pts = [...flag].map(c => c.codePointAt(0)! - 0x1f1e6)
+  return String.fromCharCode(65 + pts[0], 65 + pts[1]).toLowerCase()
+}
+
+const flagUrl = (flag: string) =>
+  `https://flagcdn.com/w320/${flagToCode(flag)}.png`
+
 const isCorrectGuess = (guess: string, round: CountryFact): boolean => {
   const n = guess.trim().toLowerCase()
   if (!n) return false
@@ -363,9 +372,15 @@ export default function App() {
                     <div key={CLUE_LABELS[i]} className="clue-card">
                       <span className="clue-icon">{CLUE_ICONS[i]}</span>
                       <span className="clue-label">{CLUE_LABELS[i]}</span>
-                      <span className={`clue-val${i === 4 ? ' flag-val' : ''}`}>
-                        {clueValue(round, i)}
-                      </span>
+                      {i === 4 ? (
+                        <img
+                          className="clue-flag-img"
+                          src={flagUrl(round.flag)}
+                          alt="Country flag"
+                        />
+                      ) : (
+                        <span className="clue-val">{clueValue(round, i)}</span>
+                      )}
                     </div>
                   ))}
 
@@ -429,7 +444,11 @@ export default function App() {
             {/* Flag Rush mode */}
             {mode === 'flagrush' && (
               <div className="flagrush">
-                <div className="flag-display">{round.flag}</div>
+                <img
+                  className="flag-img"
+                  src={flagUrl(round.flag)}
+                  alt="Country flag"
+                />
                 <div className="flag-region">📍 {round.region}</div>
                 <form className="guess-form" onSubmit={submitGuess}>
                   <input

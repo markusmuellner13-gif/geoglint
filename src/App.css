@@ -609,15 +609,26 @@
   padding: 1rem 0;
 }
 
-.flag-display {
-  font-size: clamp(5rem, 16vw, 9rem);
-  line-height: 1;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+.flag-img {
+  width: clamp(180px, 55vw, 340px);
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
   animation: flag-in 0.35s ease-out;
+  display: block;
+}
+
+.clue-flag-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  margin-top: 0.25rem;
 }
 
 @keyframes flag-in {
-  from { transform: scale(0.7); opacity: 0; }
+  from { transform: scale(0.85); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
 
