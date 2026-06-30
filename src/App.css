@@ -1,0 +1,211 @@
+.app-shell {
+  display: grid;
+  gap: 1.25rem;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-card,
+.game-card,
+.leaderboard-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 1.5rem;
+  background: rgba(11, 19, 32, 0.9);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.24);
+}
+
+.hero-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: #7dd3fc;
+  margin-bottom: 0.5rem;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  margin: 0 0 0.5rem;
+}
+
+.hero-text {
+  max-width: 620px;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.hero-actions,
+.feedback-row,
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: white;
+}
+
+.secondary,
+.ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(90px, 1fr));
+  gap: 0.75rem;
+  min-width: 220px;
+}
+
+.stats-card div,
+.fact-grid div {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.85rem;
+  border-radius: 16px;
+}
+
+.stats-card span,
+.fact-grid span {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.35rem;
+}
+
+.stats-card strong,
+.fact-grid strong {
+  font-size: 1rem;
+  color: white;
+}
+
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mode-pill {
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.15);
+  color: #a5f3fc;
+  font-weight: 700;
+}
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.guess-box {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.guess-box input {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.9);
+  color: white;
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  outline: none;
+}
+
+.feedback-row p {
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.overlay-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(99, 102, 241, 0.16));
+}
+
+.overlay-card h3 {
+  margin-top: 0;
+}
+
+.leaderboard-card ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.leaderboard-card li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.empty-state {
+  color: #94a3b8;
+}
+
+@media (max-width: 820px) {
+  .hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fact-grid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 1rem;
+  }
+
+  .guess-box {
+    flex-direction: column;
+  }
+
+  .fact-grid {
+    grid-template-columns: 1fr;
+  }
+}
