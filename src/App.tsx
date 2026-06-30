@@ -29,6 +29,7 @@ function App() {
   const [streak, setStreak] = useState(0)
   const [status, setStatus] = useState<'ready' | 'playing' | 'paused' | 'over'>('ready')
   const [guess, setGuess] = useState('')
+  const [isBooting, setIsBooting] = useState(true)
   const [feedback, setFeedback] = useState('Type the country name and press enter to lock it in.')
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(() => {
     if (typeof window === 'undefined') return []
@@ -55,6 +56,11 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(leaderboard))
   }, [leaderboard])
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsBooting(false), 1100)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   const startGame = (selectedMode: GameMode) => {
     setMode(selectedMode)
@@ -120,6 +126,13 @@ function App() {
 
   return (
     <main className="app-shell">
+      {isBooting ? (
+        <div className="boot-screen">
+          <div className="boot-badge">🌍</div>
+          <h1>GeoGlint</h1>
+          <p>Loading the globe, the facts, and the fun…</p>
+        </div>
+      ) : null}
       <section className="hero-card">
         <div className="hero-copy">
           <p className="eyebrow">Geo Sprint • Play • Learn • Repeat</p>
